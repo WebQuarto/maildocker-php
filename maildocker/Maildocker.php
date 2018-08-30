@@ -23,7 +23,7 @@ class MaildockerClient
         $this->host = isset($options['host']) ? $options['host'] : 'https://ecentry.io';
         $this->port = isset($options['port']) ? $options['port'] : '443';
         $this->endpoint = isset($options['endpoint']) ? $options['endpoint'] : '/api/maildocker/' . $this->version . '/mail/';
-        $this->mail_url = $this->host . ':' . $this->port . $this->endpoint;
+        $this->mail_url = $this->host . $this->endpoint;
         $this->proxy = isset($options['proxy']) ? $options['proxy'] : null;
     }
 
