@@ -6,32 +6,29 @@ class Mail
 {
     public function __construct()
     {
-        $this->to = array();
-        $this->cc = array();
-        $this->bcc = array();
-        $this->images = array();
-        $this->attachments = array();
-        $this->merge_vars = array();
+        $this->to = [];
+        $this->cc = [];
+        $this->bcc = [];
+        $this->images = [];
+        $this->attachments = [];
+        $this->merge_vars = [];
     }
 
     public function set_from($from_email, $from_name = null)
     {
-        $this->from = array('email' => $from_email);
-        if($from_name) $this->from['name'] = $from_name;
+        $this->from = ['email' => $from_email];
+        if ($from_name) $this->from['name'] = $from_name;
         return $this;
     }
 
     protected function add_mail($field, $mail, $name = null, $merge_vars)
     {
-        if(is_string($mail))
-        {
-            $mail = array('email' => $mail);
-            if($name) $mail['name'] = $name;
+        if (is_string($mail)) {
+            $mail = ['email' => $mail];
+            if ($name) $mail['name'] = $name;
             $this->{$field}[] = $mail;
-        }
-        elseif(is_array($mail))
-        {
-            foreach($mail as $email) $this->add_mail($field, $email);
+        } elseif (is_array($mail)) {
+            foreach ($mail as $email) $this->add_mail($field, $email);
         }
     }
 
@@ -103,9 +100,8 @@ class Mail
 
     protected function add_file($field, $file)
     {
-        if(is_array($file)) $this->{$field}[] = $file;
-        else
-        {
+        if (is_array($file)) $this->{$field}[] = $file;
+        else {
             $handle = fopen($file, 'rb');
             $this->{$field}[] = array(
                 'name' => basename($file),
@@ -117,15 +113,15 @@ class Mail
 
     public function add_attachment($attachment)
     {
-        if(!is_array($attachment)) $attachment = array($attachment);
-        foreach($attachment as $file) $this->add_file('attachments', $file);
+        if (!is_array($attachment)) $attachment = array($attachment);
+        foreach ($attachment as $file) $this->add_file('attachments', $file);
         return $this;
     }
 
     public function add_image($image)
     {
-        if(!is_array($image)) $image = array($image);
-        foreach($image as $file) $this->add_file('images', $file);
+        if (!is_array($image)) $image = array($image);
+        foreach ($image as $file) $this->add_file('images', $file);
         return $this;
     }
 }

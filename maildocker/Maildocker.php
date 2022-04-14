@@ -1,8 +1,10 @@
 <?php
 
-require_once "Message.php";
+namespace Maildocker;
 
-class MaildockerClient 
+use Maildocker\Mail;
+
+class Maildocker
 {
     const VERSION = 'v1';
 
@@ -15,7 +17,7 @@ class MaildockerClient
         $proxy,
         $version = self::VERSION;
 
-    public function __construct($apiKey, $apiSecret, $options = array())
+    public function __construct($apiKey, $apiSecret, $options = [])
     {
         $this->apiKey = $apiKey;
         $this->apiSecret = $apiSecret;
@@ -27,9 +29,9 @@ class MaildockerClient
         $this->proxy = isset($options['proxy']) ? $options['proxy'] : null;
     }
 
-    protected function build_body(Maildocker\Mail $message)
+    protected function build_body(Mail $message)
     {
-        $values = array();
+        $values = [];
         foreach((array) $message as $key => $value)
         {
             if($value) $values[$key] = $value;
@@ -37,7 +39,7 @@ class MaildockerClient
         return $values;
     }
 
-    public function send(Maildocker\Mail $message)
+    public function send(Mail $message)
     {
         $data = json_encode($this->build_body($message));
 
