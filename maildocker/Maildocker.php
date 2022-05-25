@@ -50,8 +50,8 @@ class Maildocker
         ));
         if($this->proxy)
         {
-            curl_setopt($ch, CURLOPT_PROXY, $proxy[0]);
-            curl_setopt($ch, CURLOPT_PROXYPORT, $proxy[1]);
+            curl_setopt($ch, CURLOPT_PROXY, $this->proxy[0]);
+            curl_setopt($ch, CURLOPT_PROXYPORT, $this->proxy[1]);
         }
         curl_setopt_array($ch, array(
             CURLOPT_URL => $this->mail_url,

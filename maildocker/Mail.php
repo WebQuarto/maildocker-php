@@ -21,7 +21,7 @@ class Mail
         return $this;
     }
 
-    protected function add_mail($field, $mail, $name = null, $merge_vars)
+    protected function add_mail($field, $mail, $name = null, $merge_vars = null)
     {
         if (is_string($mail)) {
             $mail = ['email' => $mail];
