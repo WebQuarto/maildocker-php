@@ -8,6 +8,9 @@ class Maildocker
 {
     const VERSION = 'v1';
 
+    private string $apiSecret;
+    private string $mail_url;
+
     public
         $apiUser,
         $apiKey,
