@@ -4,6 +4,22 @@ namespace Maildocker;
 
 class Mail
 {
+    private array $to = [];
+    private array $cc = [];
+    private array $bcc = [];
+    private array $images = [];
+    private array $attachments = [];
+    private array $merge_vars = [];
+
+    private mixed $headers;
+    private mixed $subject;
+    private string $text;
+    private mixed $date;
+    private mixed $reply_to;
+    private mixed $template;
+    private mixed $html;
+    private mixed $from;
+
     public function __construct()
     {
         $this->to = [];
