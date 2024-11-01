@@ -4,21 +4,21 @@ namespace Maildocker;
 
 class Mail
 {
-    private array $to = [];
-    private array $cc = [];
-    private array $bcc = [];
-    private array $images = [];
-    private array $attachments = [];
-    private array $merge_vars = [];
+    public array $to = [];
+    public array $cc = [];
+    public array $bcc = [];
+    public array $images = [];
+    public array $attachments = [];
+    public array $merge_vars = [];
 
-    private mixed $headers;
-    private mixed $subject;
-    private string $text;
-    private mixed $date;
-    private mixed $reply_to;
-    private mixed $template;
-    private mixed $html;
-    private mixed $from;
+    public mixed $headers;
+    public mixed $subject;
+    public string $text;
+    public mixed $date;
+    public mixed $reply_to;
+    public mixed $template;
+    public mixed $html;
+    public mixed $from;
 
     public function __construct()
     {
