@@ -42,6 +42,9 @@ class Maildocker
         return $values;
     }
 
+    /**
+     * @return array{0: int, 1: string|false, 2: int, 3: string}
+     */
     public function send(Mail $message)
     {
         $data = json_encode($this->build_body($message));
@@ -58,15 +61,18 @@ class Maildocker
         }
         curl_setopt_array($ch, array(
             CURLOPT_URL => $this->mail_url,
-            CURLOPT_TIMEOUT => 0,
+            CURLOPT_CONNECTTIMEOUT => 10,
+            CURLOPT_TIMEOUT => 30,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => $data
         ));
         $response = curl_exec($ch);
         $info = curl_getinfo($ch);
+        $curlErrno = curl_errno($ch);
+        $curlError = curl_error($ch);
         curl_close($ch);
 
-        return array($info['http_code'], $response);
+        return array((int) $info['http_code'], $response, $curlErrno, $curlError);
     }
 }
