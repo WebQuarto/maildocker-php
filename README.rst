@@ -26,4 +26,5 @@ Example
             'spreadsheet.xls'
         ));
 
-    list($http_status, $response) = $md->send($message);
+    // Returns: [http_code, body, curl_errno, curl_error]
+    list($http_status, $response, $curl_errno, $curl_error) = $md->send($message);
